@@ -1,0 +1,40 @@
+<html>
+    <meta http-equiv="refresh" content="30">
+  <head>
+    <title>Baby's first static page</title>
+    <!-- <script
+			  src="https://code.jquery.com/jquery-3.3.1.js"
+			  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+			  crossorigin="anonymous"></script> -->
+    <link href="/assets/styles.css" rel="stylesheet" type="text/css"/>
+  </head>
+  <body>
+    <div id="submissions-table">
+      <form method="POST">
+        <input type="text" name="item" placeholder="Add new item..." required/>
+        <button type="submit">Add Item</button>
+      </form>
+    </div>
+    <ul>
+      <% 
+      function createMessage(obj) {
+        let currentTime = new Date().getTime();
+        let minutes = Math.floor((currentTime - obj.time) / 60000);
+        let message = "";
+        if (minutes === 1) {   
+          message = obj.name + " Submitted 1 minute ago";
+        } else if (minutes > 1 || minutes === 0) {
+          message = obj.name + " Submitted " + minutes.toString() + " minutes ago";
+        } else {
+          message = "error in updateMessage function"
+        }
+        return message
+      }
+      
+      for (let i=0; i < list.length; i++) { 
+        let message = createMessage(list[i]) %>
+        <li><%= message%></li>
+      <% } %>
+    </ul>
+  </body>
+</html>
